@@ -1,0 +1,25 @@
+[package]
+name = "coolled1248"
+version = "0.1.0"
+edition = "2021"
+description = "A platform agnostic driver to interface with the Coolled1248 device"
+authors = ["Jean Santos <jeanpnsantos@gmail.com>"]
+categories = ["driver", "hardware-support", "no-std"]
+keywords = ["display", "LCD"]
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/jean-santos/coolled1248-rs"
+
+[features]
+
+[dependencies]
+log = "0.4.20"
+
+[dev-dependencies]
+serialport = "4.2.2"
+env_logger = "0.10.1"
+anyhow = "1.0.75"
+clap = { version = "4.4.18", features = ["derive"] }
+image = "0.24.8"
+btleplug = "0.11.5"
+tokio = { version = "1.35.1", features = ["full"] }
+uuid = "1.7.0"

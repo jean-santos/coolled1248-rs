@@ -1,0 +1,1 @@
+Example of using the bluetooth to comunicate with Coolled148 device.
