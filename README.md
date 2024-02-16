@@ -18,6 +18,7 @@
 
 - ble Using bluetooth to comunicate with your device
 - uartpc Using a serial port
+- esp32 example
 
 ## Credits
 
