@@ -1,0 +1,39 @@
+[workspace]
+
+[package]
+name = "esp32-example"
+version = "0.1.0"
+authors = ["Jean Santos <jeanpnsantos@gmail.com>"]
+edition = "2021"
+resolver = "2"
+rust-version = "1.66"
+
+[profile.release]
+opt-level = 3
+
+[profile.dev]
+debug = true    # Symbols are nice and they don't increase the size on Flash
+opt-level = "z"
+
+[features]
+default = ["std", "hal", "esp-idf-sys/native"]
+hal = ["esp-idf-hal", "embedded-svc", "esp-idf-svc"]
+std = ["alloc", "esp-idf-sys/std", "esp-idf-sys/binstart", "embedded-svc?/std", "esp-idf-hal?/std", "esp-idf-svc?/std"]
+alloc = ["embedded-svc?/alloc", "esp-idf-hal?/alloc", "esp-idf-svc?/alloc"]
+
+[dependencies]
+log = { version = "0.4.17", default-features = false }
+esp-idf-sys = { version = "0.34", default-features = false }
+esp-idf-hal = { version = "0.43", optional = true, default-features = false }
+esp-idf-svc = { version = "0.48", optional = true, default-features = false }
+embedded-svc = { version = "0.27", optional = true, default-features = false }
+embedded-hal = "1.0.0-rc.1"
+coolled1248 = { git = "https://github.com/jean-santos/coolled1248-rs.git", version = "0.1.0" }
+
+[build-dependencies]
+embuild = "0.31.2"
+
+[package.metadata.esp-idf-sys]
+esp_idf_sdkconfig = "sdkconfig"
+esp_idf_log_maximum_level = 5
+
