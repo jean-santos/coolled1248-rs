@@ -7,7 +7,11 @@ const PHRASE: &str = "Testing 123";
 const COLORS: [CoolLEDColors; PHRASE.len()] = [CoolLEDColors::Red; PHRASE.len()];
 
 fn main(){
-    let mut led_writer = CoolLEDWriter::new(PayloadType::Text(PHRASE, &COLORS));
+    let mut led_writer = CoolLEDWriter::new(
+        PayloadType::Text(PHRASE, &COLORS),
+        include_bytes!("../../../charset.bin"),
+        "0123456789@#$%&_-=*<>+/\\.:,?!\"''~´`[]()ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
+    );
 
     esp_idf_sys::link_patches();
     let peripherals = Peripherals::take().expect("failed to take peripherals");

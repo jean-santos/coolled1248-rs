@@ -1,0 +1,1 @@
+Tool to extracting just the characters we need, resulting in a smaller disk size requirement. (Mostly used for embedded system)

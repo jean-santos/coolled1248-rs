@@ -32,7 +32,12 @@ impl<'b> PayloadType<'b> {
 
 pub struct CoolLEDWriter<'a> {
     payload: PayloadType<'a>,
+    #[cfg(feature = "custom_charset")]
+    pub(crate) custom_charset: &'a [u8],
+    #[cfg(feature = "custom_charset")]
+    pub(crate) custom_charset_list: &'a str,
 }
+
 
 impl<'a> CoolLEDWriter<'a> {
     pub fn get_packets_count(&self) -> usize {
@@ -45,7 +50,7 @@ impl<'a> CoolLEDWriter<'a> {
                 .chars()
                 .map(|c| {
                     let mut buf: [u8; 16] = [0; 16];
-                    CoolLEDWriter::get_font_byte_trimmed(c, 2, &mut buf) * 3
+                    self.get_font_byte_trimmed(c, 2, &mut buf) * 3
                 })
                 .sum(),
             PayloadType::Image(data) => data.len(),
@@ -53,9 +58,19 @@ impl<'a> CoolLEDWriter<'a> {
         }
     }
 
+    #[cfg(not(feature = "custom_charset"))]
     pub fn new(payload: PayloadType<'a>) -> Self {
         Self {
             payload,
+        }
+    }
+
+    #[cfg(feature = "custom_charset")]
+    pub fn new(payload: PayloadType<'a>, custom_charset: &'a [u8], custom_charset_list: &'a str) -> Self {
+        Self {
+            payload,
+            custom_charset,
+            custom_charset_list
         }
     }
 
@@ -133,7 +148,7 @@ impl<'a> CoolLEDWriter<'a> {
         let mut bytes_needed_count = bytes_needed;
         let mut out_idx = 0;
         for (idx, current_char) in it {
-            let char_size = Self::get_font_byte_with_color(
+            let char_size = self.get_font_byte_with_color(
                 current_char,
                 2,
                 idx,
@@ -302,7 +317,7 @@ impl<'a> CoolLEDWriter<'a> {
     }
 }
 
-#[cfg(test)]
+#[cfg(all(test, not(feature = "custom_charset")))]
 mod test {
     use super::*;
     extern crate alloc;

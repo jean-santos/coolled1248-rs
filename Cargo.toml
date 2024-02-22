@@ -1,6 +1,6 @@
 [package]
 name = "coolled1248"
-version = "0.1.0"
+version = "0.2.0"
 edition = "2021"
 description = "A platform agnostic driver to interface with the Coolled1248 device"
 authors = ["Jean Santos <jeanpnsantos@gmail.com>"]
@@ -10,6 +10,8 @@ license = "MIT OR Apache-2.0"
 repository = "https://github.com/jean-santos/coolled1248-rs"
 
 [features]
+default = []
+custom_charset = []
 
 [dependencies]
 log = "0.4.20"
@@ -23,3 +25,5 @@ image = "0.24.8"
 btleplug = "0.11.5"
 tokio = { version = "1.35.1", features = ["full"] }
 uuid = "1.7.0"
+toml = "0.8.10"
+serde = "1.0.197"

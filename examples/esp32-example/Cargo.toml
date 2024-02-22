@@ -28,7 +28,7 @@ esp-idf-hal = { version = "0.43", optional = true, default-features = false }
 esp-idf-svc = { version = "0.48", optional = true, default-features = false }
 embedded-svc = { version = "0.27", optional = true, default-features = false }
 embedded-hal = "1.0.0-rc.1"
-coolled1248 = { git = "https://github.com/jean-santos/coolled1248-rs.git", version = "0.1.0" }
+coolled1248 = { path = "../../", features = ["custom_charset"]}
 
 [build-dependencies]
 embuild = "0.31.2"

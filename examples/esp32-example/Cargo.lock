@@ -241,8 +241,7 @@ dependencies = [
 
 [[package]]
 name = "coolled1248"
-version = "0.1.0"
-source = "git+https://github.com/jean-santos/coolled1248-rs.git#0bbf455a14cd6207a252e0ffa796b7652fc5e2b2"
+version = "0.2.0"
 dependencies = [
  "log",
 ]
